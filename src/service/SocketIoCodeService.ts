@@ -64,12 +64,13 @@ export class SocketIoCodeService {
         })
     }
 
-    onConnection(onConnectionFunc: (socket: typeof socketio.Socket) => void, onDisconnectFunc: (socket: typeof socketio.Socket) => void) {
-        this._io.on('connect', (socket: typeof socketio.Socket) => {
-            onConnectionFunc(socket);
-            socket.on('disconnect', () => {
-                onDisconnectFunc(socket);
-            });
+    onConnection(onConnectionFunc: () => void, onDisconnectFunc: () => void) {
+        this._io.on('connect', () => {
+            onConnectionFunc();
+
+        });
+        this._io.on('disconnect', () => {
+            onDisconnectFunc();
         });
     }
 }

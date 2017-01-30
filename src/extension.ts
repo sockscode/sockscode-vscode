@@ -46,6 +46,14 @@ class SocksCodeController {
         this._socketIoCodeService.createRoom();
     }
 
+    public joinRoom(roomUuid: string) {
+        this._socketIoCodeService.joinRoom(roomUuid);
+    }
+
+    public disconnect() {
+        this._socketIoCodeService.close();
+    }
+
     public dispose() {
         this._socketIoCodeService.close();
     }
@@ -53,6 +61,7 @@ class SocksCodeController {
     private _onDidChangeActiveTextEditor() {
         this._onCodeChange();
     }
+
 
     private _onDidChangeTextDocument(textDocumentChangeEvent: TextDocumentChangeEvent) {
         //fixme?
@@ -93,18 +102,28 @@ export function activate(context: ExtensionContext) {
         commands.registerCommand('sockscode.createRoom', () => {
             if (!socksCodeController) {
                 socksCodeController = new SocksCodeController();
-                socksCodeController.createRoom();
             }
+            socksCodeController.createRoom();
         }),
         commands.registerCommand('sockscode.connect', () => {
             // The code you place here will be executed every time your command is executed
             // Display a message box to the user
-            window.showInformationMessage('connect!');
+            window.showInputBox({ prompt: 'Please proide roomUuid to connect to' })
+                .then(roomUuid => {
+                    if (!socksCodeController) {
+                        socksCodeController = new SocksCodeController();
+                    }
+                    socksCodeController.joinRoom(roomUuid);
+                });
         }),
         commands.registerCommand('sockscode.disconnect', () => {
             // The code you place here will be executed every time your command is executed
             // Display a message box to the user
-            window.showInformationMessage('disconnect!');
+            if (socksCodeController) {
+                socksCodeController.disconnect();
+                socksCodeController = null;
+            }
+            window.showInformationMessage('dicsonnected');
         })
     ];
 
