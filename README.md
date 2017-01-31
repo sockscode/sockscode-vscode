@@ -1,6 +1,7 @@
 #sockscode-vscode
 
 Enables pair programming. Share your code with your buddies. 
+![demo](media/demosocks.gif)
 
 To start a pair programming session: 
 
@@ -43,3 +44,7 @@ List of commands:
         ]
 }
 ```
+
+woa. THis is awesome like a pair of socks
+
+I know right?
