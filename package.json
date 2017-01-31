@@ -1,18 +1,28 @@
 {
     "name": "sockscode-vscode",
     "displayName": "sockscode-vscode",
-    "description": "",
-    "version": "0.0.1",
+    "description": "Pair programming",
+    "version": "0.0.2",
     "publisher": "shyykoserhiy",
     "engines": {
         "vscode": "^1.5.0"
+    },
+    "icon": "media/logo.png",
+    "galleryBanner": {
+        "color": "#11B460",
+        "theme": "light"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sockscode/sockscode-vscode.git"
     },
     "categories": [
         "Other"
     ],
     "activationEvents": [
         "onCommand:sockscode.createRoom",
-        "onCommand:sockscode.connect"
+        "onCommand:sockscode.connect",
+        "onCommand:sockscode.disconnect"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -53,12 +63,12 @@
         "socket.io-client": "^1.7.2"
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32",
+        "@types/node": "^6.0.40",
         "@types/socket.io": "^1.4.27",
-        "@types/socket.io-client": "^1.4.29"
+        "@types/socket.io-client": "^1.4.29",
+        "mocha": "^2.3.3",
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0"
     }
 }
