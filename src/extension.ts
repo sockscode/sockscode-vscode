@@ -123,7 +123,7 @@ export function activate(context: ExtensionContext) {
                 socksCodeController.disconnect();
                 socksCodeController = null;
             }
-            window.showInformationMessage('dicsonnected');
+            window.showInformationMessage('Disconnected');
         })
     ];
 
