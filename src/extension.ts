@@ -32,7 +32,7 @@ class SocksCodeController {
         });
         this._socketIoCodeService.onCreateRoom((_roomUuid) => {
             this._roomUuid = _roomUuid;
-            window.showInformationMessage(`Room created. Room uuid :${this._roomUuid}`);
+            window.showInformationMessage(`Room created. Room uuid: ${this._roomUuid}`);
         });
         //vscode event subscriptions
         let subscriptions: Disposable[] = [];
@@ -69,7 +69,7 @@ class SocksCodeController {
     }
 
     private showRoom() {
-        window.showInformationMessage(`Your room uuid :${this._roomUuid}`);
+        window.showInformationMessage(`Your room uuid: ${this._roomUuid}`);
     }
 
     private _onCodeChange() {
@@ -108,7 +108,7 @@ export function activate(context: ExtensionContext) {
         commands.registerCommand('sockscode.connect', () => {
             // The code you place here will be executed every time your command is executed
             // Display a message box to the user
-            window.showInputBox({ prompt: 'Please proide roomUuid to connect to' })
+            window.showInputBox({ prompt: 'Please provide room uuid to connect to' })
                 .then(roomUuid => {
                     if (!socksCodeController) {
                         socksCodeController = new SocksCodeController();
