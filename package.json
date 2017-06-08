@@ -37,7 +37,7 @@
             },
             {
                 "command": "sockscode.disconnect",
-                "title": "Sockscode disconect."
+                "title": "Sockscode disconnect."
             }
         ],
         "configuration": {
