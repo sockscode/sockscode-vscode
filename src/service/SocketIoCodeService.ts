@@ -1,10 +1,14 @@
 import * as socketio from 'socket.io-client';
 import { getSockscodeServerUrl } from '../config/Config';
+import { TreeFile } from '../common';
 
 export interface CodeChangeSocketData {
     username: string,
-    code: string
+    change: CodeChangePartialSocketData
 }
+
+export interface CodeChangePartialSocketData { code: string, filePath: string[] }
+export interface LoadFileSocketData { filePath: string[] }
 
 export class SocketIoCodeService {
     private static _instance: SocketIoCodeService = null;
@@ -40,8 +44,8 @@ export class SocketIoCodeService {
         this._io.close();
     }
 
-    changeCode(code: string) {
-        this._io.emit('code change', code);
+    changeCode(codeChangePartialSocketData: CodeChangePartialSocketData) {
+        this._io.emit('code change', codeChangePartialSocketData);
     }
 
     createRoom() {
@@ -50,6 +54,24 @@ export class SocketIoCodeService {
 
     joinRoom(roomUuid: string) {
         this._io.emit('join room', roomUuid);
+    }
+
+    sendFilesStructure(files: TreeFile[]) {
+        this._io.emit('files structure', { children: files });
+    }
+
+    requestFilesStructure() {
+        this._io.emit('request files structure');
+    }
+
+    loadFile(loadFile: LoadFileSocketData) {
+        this._io.emit('load file', loadFile);
+    }
+
+    onJoinedRoom(joinedRoomFunc: (roomUuid: string) => void) {
+        this._io.on('joined room', (roomUuid: string) => {
+            joinedRoomFunc(roomUuid);
+        })
     }
 
     onCodeChange(codeChangeFunc: (data: CodeChangeSocketData) => void) {
@@ -61,6 +83,24 @@ export class SocketIoCodeService {
     onCreateRoom(roomCreatedFunc: (roomUuid: string) => void) {
         this._io.on('create room', (roomUuid: string) => {
             roomCreatedFunc(roomUuid);
+        })
+    }
+
+    onLoadFile(onLoadFileFunc: (loadFile: LoadFileSocketData) => void) {
+        this._io.on('load file', (loadFile: LoadFileSocketData) => {
+            onLoadFileFunc(loadFile);
+        })
+    }
+
+    onFilesStructureRequest(onFilesStructureRequest: () => void) {
+        this._io.on('request files structure', () => {
+            onFilesStructureRequest();
+        })
+    }
+
+    onFilesStructure(onFilesStructureRequest: (files: { children: TreeFile[] }) => void) {
+        this._io.on('files structure', (files: { children: TreeFile[] }) => {
+            onFilesStructureRequest(files);
         })
     }
 
