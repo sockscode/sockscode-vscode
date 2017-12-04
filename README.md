@@ -1,4 +1,4 @@
-#sockscode-vscode
+# sockscode-vscode
 
 Enables pair programming. Share your code with your buddies. 
 ![demo](media/demosocks.gif)
@@ -17,12 +17,12 @@ This add-in provides you a way to have a pair coding session with any other sock
 * sockscode-office
 * sockscode-web
 
-##Privacy
+## Privacy
 Anyone with the roomUuid can join your session and see your code. 
 If you want to use this extension in your corporate environment you should deploy your own sockscode-server 
 https://github.com/sockscode/sockscode-server and set 'sockscode.server' property for sockscode-vscode extension.
 
-##Commands
+## Commands
 
 List of commands:
 ```json
@@ -45,6 +45,6 @@ List of commands:
 }
 ```
 
-woa. THis is awesome like a pair of socks
+woa. This is awesome like a pair of socks
 
 I know right?
