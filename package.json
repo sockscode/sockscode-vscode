@@ -2,7 +2,7 @@
     "name": "sockscode-vscode",
     "displayName": "sockscode-vscode",
     "description": "Pair programming",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "shyykoserhiy",
     "engines": {
         "vscode": "^1.18.0"
