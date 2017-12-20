@@ -46,7 +46,7 @@
             "properties": {
                 "sockscode.server": {
                     "type": "string",
-                    "default": "http://localhost:3000",
+                    "default": "https://sockscode.azurewebsites.net/",
                     "description": "Specifies sockscode compatible server url."
                 }
             }
